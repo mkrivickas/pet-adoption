@@ -20,6 +20,8 @@ async function petsArea() {
   petsData.forEach((pet) => {
     const clone = template.content.cloneNode(true);
 
+    clone.querySelector(".event-card").dataset.species = pet.species;
+
     clone.querySelector("h3").textContent = pet.name;
     clone.querySelector(".event-description").textContent = pet.description;
     clone.querySelector(".event-date").textContent = createAgeText(
@@ -65,5 +67,12 @@ function handleButtonClick(e) {
   e.target.classList.add("active");
 
   // actually filter the pets down below
-  
+  const currentFilter = e.target.dataset.filter;
+  document.querySelectorAll(".event-card").forEach((el) => {
+    if (currentFilter == el.dataset.species || currentFilter == "all") {
+      el.style.display = "grid";
+    } else {
+      el.style.display = "none";
+    }
+  });
 }
