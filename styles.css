@@ -170,6 +170,17 @@ body {
   font-family: "Source Sans 3", sans-serif;
   font-size: 1.15rem;
   color: #9f9f9f;
+  cursor: pointer;
+}
+
+.event-filter button:hover {
+  color: #7d7d7d;
+}
+
+.event-filter .active,
+.event-filter .active:hover {
+  color: #475aff;
+  text-decoration: underline;
 }
 
 .site-footer p {
