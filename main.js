@@ -1,3 +1,6 @@
+const template = document.querySelector("#event-card-template");
+const wrapper = document.createDocumentFragment();
+
 async function start() {
   const weatherPromise = await fetch(
     "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=apparent_temperature"
@@ -15,8 +18,13 @@ async function petsArea() {
   );
   const petsData = await petsPromise.json();
   petsData.forEach((pet) => {
-    console.log(pet.species);
+    const clone = template.content.cloneNode(true);
+
+    clone.querySelector("h3").textContent = pet.name;
+
+    wrapper.appendChild(clone);
   });
+  document.querySelector(".list-of-events").appendChild(wrapper);
 }
 
 petsArea();
